@@ -14,6 +14,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var addCityButton: UIButton!
     
+    var addCityAlert: AddCityAlertViewController?
+    
     var presenter: MainPresenterProtocol!
     var forecastViews = [CityWeatherForecastView]()
     
@@ -81,12 +83,42 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
         forecastViews[cityIndex].setWeatherForecast(weatherForecast)
     }
     
+    func getEnteredCityToAdd() -> String? {
+        return addCityAlert?.enteredCity()
+    }
+    
+    func addCity(_ city: String) {
+        let vFWidth: CGFloat = view.frame.width
+        let vFHeight: CGFloat = view.frame.height
+        
+        // setup page scroll
+        let oldPagedScrollViewContentWidth = pagesScrollView.contentSize.width
+        
+        pagesScrollView.contentSize = CGSize(width: oldPagedScrollViewContentWidth + vFWidth, height: vFHeight)
+        
+        let forecastView = CityWeatherForecastView.create()
+        forecastView.setCity(city)
+        
+        forecastView.frame = CGRect(x: oldPagedScrollViewContentWidth, y: 0, width: vFWidth, height: vFHeight)
+        pagesScrollView.addSubview(forecastView)
+        
+        forecastViews.append(forecastView)
+        
+        // setup page control
+        pageControl.numberOfPages += 1
+    }
+    
     // MARK: UIScrollViewDelegate methods
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentPageOld = pageControl.currentPage
         
         let pageIndex = scrollView.contentOffset.x / view.frame.width
+        
+        guard pageIndex >= 0 && Int(pageIndex) < pageControl.numberOfPages else {
+            return
+        }
+        
         pageControl.currentPage = Int(pageIndex)
         
         if currentPageOld != pageControl.currentPage {
@@ -96,6 +128,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
     
     // MARK: Actions
     @IBAction func addCityButtonTapped(_ sender: Any) {
+        self.addCityAlert = AddCityAlertViewController.create(with: presenter)
+        
+        present(self.addCityAlert!, animated: false, completion: nil)
     }
     
 //    ------------

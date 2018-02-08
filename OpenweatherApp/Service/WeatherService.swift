@@ -20,6 +20,10 @@ class WeatherService {
         return cityRepository.getAllCities()
     }
     
+    func addCity(_ city: String) -> Bool {
+        return cityRepository.addCity(city)
+    }
+    
     func requestWeatherForecast(for city: String, complationHandler: (CityWeatherForecast) -> ()){
         // todo: add API Client Here
         complationHandler(CityWeatherForecast(city: city))

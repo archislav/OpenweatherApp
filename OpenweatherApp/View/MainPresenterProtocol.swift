@@ -15,4 +15,6 @@ protocol MainPresenterProtocol: AnyObject {
     func initialize()
     
     func currentCityChanged()
+    
+    func enteredCityToAdd()
 }

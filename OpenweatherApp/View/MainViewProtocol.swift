@@ -15,4 +15,8 @@ protocol MainViewProtocol: AnyObject {
     func getCurrentCityIndex() -> Int
     
     func setWeatherForecast(_ weatherForecast: CityWeatherForecast, for cityIndex: Int)
+    
+    func getEnteredCityToAdd() -> String?
+    
+    func addCity(_ city: String)
 }

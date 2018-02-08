@@ -28,11 +28,14 @@ class CityRepository {
         return UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as! [String]
     }
     
-    func addCity(city: String) {
+    func addCity(_ city: String) -> Bool {
         var cities = getAllCities()
         if !cities.contains(city) {
             cities.append(city)
             UserDefaults.standard.set(cities, forKey: CityRepository.UD_CITIES_KEY)
+            return true
+        } else {
+            return false
         }
     }
     

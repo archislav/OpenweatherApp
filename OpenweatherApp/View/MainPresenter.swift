@@ -24,7 +24,7 @@ class MainPresenter: MainPresenterProtocol {
     
     func initialize() {
         // todo:
-//        let forecasts = [CityWeatherForecast(city: "Moscow"), CityWeatherForecast(city: "London"), CityWeatherForecast(city: "Alushta")]
+        //        let forecasts = [CityWeatherForecast(city: "Moscow"), CityWeatherForecast(city: "London"), CityWeatherForecast(city: "Alushta")]
         self.cities = weatherService.getAllCities()
         mainView.setCities(cities: self.cities)
     }
@@ -35,6 +35,16 @@ class MainPresenter: MainPresenterProtocol {
         
         weatherService.requestWeatherForecast(for: city) { (weatherForecast) in
             mainView.setWeatherForecast(weatherForecast, for: cityIndex)
+        }
+    }
+    
+    func enteredCityToAdd() {
+        if let cityToAdd = mainView.getEnteredCityToAdd() {
+            let cityWasAdded = weatherService.addCity(cityToAdd)
+            if cityWasAdded {
+                cities.append(cityToAdd)
+                mainView.addCity(cityToAdd)
+            }
         }
     }
 }

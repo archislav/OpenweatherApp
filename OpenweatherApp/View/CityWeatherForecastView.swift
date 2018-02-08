@@ -25,9 +25,14 @@ class CityWeatherForecastView: UIView {
         return view
     }
     
-    func set(forecast: CityWeatherForecast) {
+    func setCity(_ city: String) {
         // todo:
-        cityLabel.text = forecast.city
+        cityLabel.text = city
+    }
+    
+    func setWeatherForecast(_ weatherForecast: CityWeatherForecast) {
+        // todo:
+        print(">>> VIEW: setWeatherForecast")
     }
 
 }

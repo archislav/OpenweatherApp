@@ -10,5 +10,9 @@ import Foundation
 
 protocol MainViewProtocol: AnyObject {
     
-    func setCityWeatherForecasts(forecasts: [CityWeatherForecast])
+    func setCities(cities: [String])
+    
+    func getCurrentCityIndex() -> Int
+    
+    func setWeatherForecast(_ weatherForecast: CityWeatherForecast, for cityIndex: Int)
 }

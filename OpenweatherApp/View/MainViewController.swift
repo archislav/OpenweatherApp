@@ -14,6 +14,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
     @IBOutlet weak var pageControl: UIPageControl!
     
     var presenter: MainPresenterProtocol!
+    var forecastViews = [CityWeatherForecastView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +35,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
         // setup presenter
         self.presenter = MainPresenter(mainView: self)
         self.presenter.initialize()
-        //        let slides = createSlides()
-        //        setupSlideScrollView(slides: slides)
     }
     
-    func setCityWeatherForecasts(forecasts: [CityWeatherForecast]) {
+    // MARK: MainViewProtocol methods
+    
+    func setCities(cities: [String]) {
         // todo: check if zero length
         
         let vFWidth: CGFloat = view.frame.width
@@ -46,26 +47,44 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
         
         // setup page scroll
         pagesScrollView.frame = CGRect(x: 0, y: 0, width: vFWidth, height: vFHeight)
-        pagesScrollView.contentSize = CGSize(width: CGFloat(forecasts.count) * vFWidth, height: vFHeight)
+        pagesScrollView.contentSize = CGSize(width: CGFloat(cities.count) * vFWidth, height: vFHeight)
         
-        for i in 0..<forecasts.count {
-            let forecast = forecasts[i]
+        for i in 0..<cities.count {
+            let city = cities[i]
             
             let forecastView = CityWeatherForecastView.create()
-            forecastView.set(forecast: forecast)
+            forecastView.setCity(city)
             
             forecastView.frame = CGRect(x: vFWidth * CGFloat(i), y: 0, width: vFWidth, height: vFHeight)
             pagesScrollView.addSubview(forecastView)
+            
+            forecastViews.append(forecastView)
         }
         
         // setup page control
-        pageControl.numberOfPages = forecasts.count
+        pageControl.numberOfPages = cities.count
         pageControl.currentPage = 0
+        
+        // request weather for current city
+        presenter.currentCityChanged()
     }
+    
+    func getCurrentCityIndex() -> Int {
+        return pageControl.currentPage
+    }
+    
+    func setWeatherForecast(_ weatherForecast: CityWeatherForecast, for cityIndex: Int) {
+        forecastViews[cityIndex].setWeatherForecast(weatherForecast)
+    }
+    
+    // MARK: UIScrollViewDelegate methods
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = scrollView.contentOffset.x / view.frame.width
         pageControl.currentPage = Int(pageIndex)
+        
+        // request weather for current city
+        presenter.currentCityChanged()
     }
     
     

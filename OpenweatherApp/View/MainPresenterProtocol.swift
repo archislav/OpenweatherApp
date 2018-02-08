@@ -13,4 +13,6 @@ protocol MainPresenterProtocol: AnyObject {
     init(mainView: MainViewProtocol)
     
     func initialize()
+    
+    func currentCityChanged()
 }

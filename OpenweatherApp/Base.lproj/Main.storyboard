@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,6 +24,18 @@
                                 <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1m-gN-brm">
+                                <rect key="frame" x="315" y="604" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Y1m-gN-brm" secondAttribute="height" multiplier="1:1" id="PWQ-HD-VSP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="32"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addCityButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CZ9-sv-hOT"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ao-3V-P0S">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </scrollView>
@@ -32,6 +45,8 @@
                             <constraint firstItem="9ao-3V-P0S" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3CJ-IS-eEz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="v6d-pI-D0N" secondAttribute="bottom" constant="20" id="3a0-VQ-ZiL"/>
                             <constraint firstItem="9ao-3V-P0S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="G5T-UO-jYa"/>
+                            <constraint firstItem="Y1m-gN-brm" firstAttribute="centerY" secondItem="v6d-pI-D0N" secondAttribute="centerY" id="OJm-Zp-h8v"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y1m-gN-brm" secondAttribute="trailing" constant="10" id="QsD-QD-gMS"/>
                             <constraint firstItem="v6d-pI-D0N" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="VCe-np-h5L"/>
                             <constraint firstItem="9ao-3V-P0S" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cVy-GK-1sq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="v6d-pI-D0N" secondAttribute="trailing" constant="80" id="iV0-m3-ttk"/>
@@ -40,6 +55,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addCityButton" destination="Y1m-gN-brm" id="RqC-a2-zPe"/>
                         <outlet property="pageControl" destination="v6d-pI-D0N" id="ffH-rg-eJi"/>
                         <outlet property="pagesScrollView" destination="9ao-3V-P0S" id="P1X-WA-b3y"/>
                     </connections>

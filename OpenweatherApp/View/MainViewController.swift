@@ -12,6 +12,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
 
     @IBOutlet weak var pagesScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var addCityButton: UIButton!
     
     var presenter: MainPresenterProtocol!
     var forecastViews = [CityWeatherForecastView]()
@@ -31,6 +32,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
         pageControl.numberOfPages = 1
         pageControl.currentPage = 0
         view.bringSubview(toFront: pageControl)
+        
+        // setup addCityButton
+        view.bringSubview(toFront: addCityButton)
         
         // setup presenter
         self.presenter = MainPresenter(mainView: self)
@@ -80,13 +84,19 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
     // MARK: UIScrollViewDelegate methods
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentPageOld = pageControl.currentPage
+        
         let pageIndex = scrollView.contentOffset.x / view.frame.width
         pageControl.currentPage = Int(pageIndex)
         
-        // request weather for current city
-        presenter.currentCityChanged()
+        if currentPageOld != pageControl.currentPage {
+            presenter.currentCityChanged()
+        }
     }
     
+    // MARK: Actions
+    @IBAction func addCityButtonTapped(_ sender: Any) {
+    }
     
 //    ------------
 

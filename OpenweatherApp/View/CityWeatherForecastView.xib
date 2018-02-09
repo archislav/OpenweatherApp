@@ -22,16 +22,25 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zjh-q5-qYE">
+                    <rect key="frame" x="10" y="118.5" width="355" height="468.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Zjh-q5-qYE" secondAttribute="bottom" constant="80" id="G5q-gR-wtE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OMh-yk-eaA" secondAttribute="trailing" constant="10" id="L5X-33-hSL"/>
                 <constraint firstItem="OMh-yk-eaA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="WbU-3I-Lib"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zjh-q5-qYE" secondAttribute="trailing" constant="10" id="dRn-6G-N6D"/>
+                <constraint firstItem="Zjh-q5-qYE" firstAttribute="top" secondItem="OMh-yk-eaA" secondAttribute="bottom" constant="20" id="elv-xG-yi8"/>
                 <constraint firstItem="OMh-yk-eaA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="njI-UC-ny5"/>
+                <constraint firstItem="Zjh-q5-qYE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="tWl-yV-yeX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="cityLabel" destination="OMh-yk-eaA" id="zt3-Rb-a47"/>
+                <outlet property="forecastTableView" destination="Zjh-q5-qYE" id="crN-dE-p4I"/>
             </connections>
         </view>
     </objects>

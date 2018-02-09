@@ -30,6 +30,14 @@ class OpenweatherAppTests: XCTestCase {
         
         var date = dateFormatter.date(from: "09 Feb 2018")
         print(">>> \(date)")
+        
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "EEEE"
+        dateFormatter2.locale = Locale.current
+        dateFormatter2.timeZone = TimeZone.current
+        
+        var str = dateFormatter2.string(from: date!)
+        print(">>> \(str)")
     }
     
 }

@@ -34,7 +34,7 @@ class MainPresenter: MainPresenterProtocol {
         let city = cities[cityIndex]
         
         weatherService.requestWeatherForecast(for: city) { (weatherForecast) in
-            mainView.setWeatherForecast(weatherForecast, for: cityIndex)
+            self.mainView.setWeatherForecast(weatherForecast, for: cityIndex)
         }
     }
     

@@ -13,6 +13,7 @@ class WeatherService {
     static var shared = WeatherService()
     
     var cityRepository = CityRepository.shared
+    var weatherAPIClient = YahooWeatherAPIClient.shared
     
     private init() {}
     
@@ -24,8 +25,9 @@ class WeatherService {
         return cityRepository.addCity(city)
     }
     
-    func requestWeatherForecast(for city: String, complationHandler: (CityWeatherForecast) -> ()){
-        // todo: add API Client Here
-        complationHandler(CityWeatherForecast(city: city))
+    func requestWeatherForecast(for city: String, complationHandler: @escaping (CityWeatherForecast) -> ()){
+        weatherAPIClient.requestWeatherForecast(for: city) { (forecast) in
+            complationHandler(forecast)
+        }
     }
 }

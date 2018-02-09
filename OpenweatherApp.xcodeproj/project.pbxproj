@@ -22,6 +22,11 @@
 		A5CB4E36202CAF3700BB9E69 /* CityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E35202CAF3700BB9E69 /* CityRepository.swift */; };
 		A5CB4E38202CB75600BB9E69 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E37202CB75600BB9E69 /* WeatherService.swift */; };
 		A5CB4E3A202CFE7F00BB9E69 /* AddCityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E39202CFE7F00BB9E69 /* AddCityAlertViewController.swift */; };
+		A5CB4E43202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E42202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift */; };
+		A5CB4E45202D159000BB9E69 /* DateWeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E44202D159000BB9E69 /* DateWeatherCondition.swift */; };
+		A5CB4E49202D1BD000BB9E69 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E46202D1BD000BB9E69 /* JSONUtils.swift */; };
+		A5CB4E4A202D1BD000BB9E69 /* UrlEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E47202D1BD000BB9E69 /* UrlEncoder.swift */; };
+		A5CB4E4B202D1BD000BB9E69 /* HTTPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E48202D1BD000BB9E69 /* HTTPUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,11 @@
 		A5CB4E35202CAF3700BB9E69 /* CityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepository.swift; sourceTree = "<group>"; };
 		A5CB4E37202CB75600BB9E69 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		A5CB4E39202CFE7F00BB9E69 /* AddCityAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityAlertViewController.swift; sourceTree = "<group>"; };
+		A5CB4E42202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooWeatherAPIClient.swift; sourceTree = "<group>"; };
+		A5CB4E44202D159000BB9E69 /* DateWeatherCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeatherCondition.swift; sourceTree = "<group>"; };
+		A5CB4E46202D1BD000BB9E69 /* JSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
+		A5CB4E47202D1BD000BB9E69 /* UrlEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlEncoder.swift; sourceTree = "<group>"; };
+		A5CB4E48202D1BD000BB9E69 /* HTTPUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,7 @@
 		A5CB4E05202C9DD300BB9E69 /* OpenweatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				A5CB4E3B202D0DD700BB9E69 /* Utils */,
 				A5CB4E34202CAED800BB9E69 /* Service */,
 				A5CB4E31202CA6A200BB9E69 /* Model */,
 				A5CB4E26202C9E4700BB9E69 /* View */,
@@ -134,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				A5CB4E32202CA6B700BB9E69 /* CityWeatherForecast.swift */,
+				A5CB4E44202D159000BB9E69 /* DateWeatherCondition.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,8 +155,19 @@
 			children = (
 				A5CB4E35202CAF3700BB9E69 /* CityRepository.swift */,
 				A5CB4E37202CB75600BB9E69 /* WeatherService.swift */,
+				A5CB4E42202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		A5CB4E3B202D0DD700BB9E69 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A5CB4E48202D1BD000BB9E69 /* HTTPUtils.swift */,
+				A5CB4E46202D1BD000BB9E69 /* JSONUtils.swift */,
+				A5CB4E47202D1BD000BB9E69 /* UrlEncoder.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,15 +274,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CB4E4A202D1BD000BB9E69 /* UrlEncoder.swift in Sources */,
 				A5CB4E3A202CFE7F00BB9E69 /* AddCityAlertViewController.swift in Sources */,
 				A5CB4E36202CAF3700BB9E69 /* CityRepository.swift in Sources */,
 				A5CB4E38202CB75600BB9E69 /* WeatherService.swift in Sources */,
+				A5CB4E49202D1BD000BB9E69 /* JSONUtils.swift in Sources */,
+				A5CB4E4B202D1BD000BB9E69 /* HTTPUtils.swift in Sources */,
 				A5CB4E2C202C9FE300BB9E69 /* MainPresenter.swift in Sources */,
 				A5CB4E28202C9F7200BB9E69 /* MainViewProtocol.swift in Sources */,
 				A5CB4E33202CA6B700BB9E69 /* CityWeatherForecast.swift in Sources */,
 				A5CB4E2A202C9FBF00BB9E69 /* MainPresenterProtocol.swift in Sources */,
 				A5CB4E09202C9DD400BB9E69 /* MainViewController.swift in Sources */,
 				A5CB4E07202C9DD400BB9E69 /* AppDelegate.swift in Sources */,
+				A5CB4E43202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift in Sources */,
+				A5CB4E45202D159000BB9E69 /* DateWeatherCondition.swift in Sources */,
 				A5CB4E30202CA23100BB9E69 /* CityWeatherForecastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

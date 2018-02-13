@@ -13,9 +13,7 @@ class HTTPUtils {
     
     static let STATUS_CODE_OK = 200
     
-    private init() {
-        //        незачем создавать инстансы
-    }
+    private init() {}
     
     static func executePOSTRequest(url urlStr: String, with parameters: [String: String], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         let request = createPOSTRequest(url: urlStr, with: parameters)
@@ -74,16 +72,6 @@ class HTTPUtils {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        
-        // закомментированная реалзиация для передачи тела в JSON
-        /*do {
-         request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-         } catch let error {
-         print(error.localizedDescription)
-         }
-         
-         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-         request.addValue("application/json", forHTTPHeaderField: "Accept")*/
         
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         

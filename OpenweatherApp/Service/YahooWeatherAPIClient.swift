@@ -66,7 +66,7 @@ class YahooWeatherAPIClient {
             let jsonParser = CityWeatherForecastJSONParser()
             
             return jsonParser.parse(json: json)
-        } catch let error {
+        } catch {
             os_log("Error on response parsing: %@", type: .error, error.localizedDescription)
             return nil
         }

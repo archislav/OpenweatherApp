@@ -9,9 +9,8 @@
 import Foundation
 
 class JSONUtils {
-    private init() {
-        // незачем
-    }
+    
+    private init() {}
     
     static func getIntFromJson(_ json: [String: Any], _ path: [String], _ field: String) -> Int {
         let jsonForPath = getJson(json, path)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5178A3D2033109D00F0781E /* CityWeatherForecastJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5178A3C2033109C00F0781E /* CityWeatherForecastJSONParser.swift */; };
 		A5CB4E07202C9DD400BB9E69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E06202C9DD400BB9E69 /* AppDelegate.swift */; };
 		A5CB4E09202C9DD400BB9E69 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E08202C9DD400BB9E69 /* MainViewController.swift */; };
 		A5CB4E0C202C9DD400BB9E69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CB4E0A202C9DD400BB9E69 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5178A3C2033109C00F0781E /* CityWeatherForecastJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherForecastJSONParser.swift; sourceTree = "<group>"; };
 		A5CB4E03202C9DD300BB9E69 /* OpenweatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenweatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CB4E06202C9DD400BB9E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CB4E08202C9DD400BB9E69 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				A5CB4E35202CAF3700BB9E69 /* CityRepository.swift */,
 				A5CB4E37202CB75600BB9E69 /* WeatherService.swift */,
 				A5CB4E42202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift */,
+				A5178A3C2033109C00F0781E /* CityWeatherForecastJSONParser.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				A5CB4E09202C9DD400BB9E69 /* MainViewController.swift in Sources */,
 				A5CB4E07202C9DD400BB9E69 /* AppDelegate.swift in Sources */,
 				A5CB4E43202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift in Sources */,
+				A5178A3D2033109D00F0781E /* CityWeatherForecastJSONParser.swift in Sources */,
 				A5CB4E45202D159000BB9E69 /* DateWeatherCondition.swift in Sources */,
 				A5CB4E30202CA23100BB9E69 /* CityWeatherForecastView.swift in Sources */,
 			);

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 class CityRepository {
     
@@ -16,11 +17,11 @@ class CityRepository {
     
     private init(){
         if let cities = UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as? [String] {
-            print(">>> already initialized")
+            os_log("Cities already initialized")
         } else {
             let cities = ["Moscow", "Kazan", "Samara"]
             UserDefaults.standard.set(cities, forKey: CityRepository.UD_CITIES_KEY)
-            print(">>> initialized cities with: \(cities)")
+            os_log("Cities initialized with: %@", cities)
         }
     }
     
@@ -33,6 +34,7 @@ class CityRepository {
         if !cities.contains(city) {
             cities.append(city)
             UserDefaults.standard.set(cities, forKey: CityRepository.UD_CITIES_KEY)
+            os_log("Added city: %@", city)
             return true
         } else {
             return false

@@ -60,9 +60,10 @@ class HTTPUtils {
         urlComps.queryItems = queryItems
         
         let url = urlComps.url!
+        os_log("URL: %@", url.absoluteString)
         
         var request = URLRequest(url: url)
-        print(">>> \(url)")
+        
         request.httpMethod = "GET"
         
         return request

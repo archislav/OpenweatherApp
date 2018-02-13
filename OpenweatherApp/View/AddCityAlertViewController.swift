@@ -35,20 +35,6 @@ class AddCityAlertViewController: UIAlertController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        addTextField { (textField) in
-//            textField.placeholder = "City name"
-//        }
-//
-//        let addAction = UIAlertAction(title: "Add", style: .default) {(_) in
-//            self.presenter.enteredCityToAdd()
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {(_) in
-//        }
-//
-//        self.addAction(addAction)
-//        self.addAction(cancelAction)
     }
     
     func enteredCity() -> String? {

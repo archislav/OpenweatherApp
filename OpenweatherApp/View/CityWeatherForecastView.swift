@@ -16,13 +16,6 @@ class CityWeatherForecastView: UIView, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var forecastTableView: UITableView!
     
     var forecast : CityWeatherForecast?
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
     
     static func create() -> CityWeatherForecastView {
         let view: CityWeatherForecastView = Bundle.main.loadNibNamed("CityWeatherForecastView", owner: self, options: nil)?.first as! CityWeatherForecastView

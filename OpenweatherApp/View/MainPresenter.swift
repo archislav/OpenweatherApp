@@ -23,14 +23,17 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     func initialize() {
-        // todo:
-        //        let forecasts = [CityWeatherForecast(city: "Moscow"), CityWeatherForecast(city: "London"), CityWeatherForecast(city: "Alushta")]
         self.cities = weatherService.getAllCities()
         mainView.setCities(cities: self.cities)
     }
     
     func currentCityChanged() {
         let cityIndex = mainView.getCurrentCityIndex()
+        
+        if cityIndex == -1 {
+            return
+        }
+        
         let city = cities[cityIndex]
         
         weatherService.requestWeatherForecast(for: city) { (weatherForecast) in

@@ -25,9 +25,9 @@ class WeatherService {
         return cityRepository.addCity(city)
     }
     
-    func requestWeatherForecast(for city: String, complationHandler: @escaping (CityWeatherForecast) -> ()){
+    func requestWeatherForecast(for city: String, completionHandler: @escaping (CityWeatherForecast) -> ()){
         weatherAPIClient.requestWeatherForecast(for: city) { (forecast) in
-            complationHandler(forecast)
+            completionHandler(forecast)
         }
     }
 }

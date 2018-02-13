@@ -46,37 +46,32 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
     // MARK: MainViewProtocol methods
     
     func setCities(cities: [String]) {
-        // todo: check if zero length
+        cleanCities()
         
-        let vFWidth: CGFloat = view.frame.width
-        let vFHeight: CGFloat = view.frame.height
-        
-        // setup page scroll
-        pagesScrollView.frame = CGRect(x: 0, y: 0, width: vFWidth, height: vFHeight)
-        pagesScrollView.contentSize = CGSize(width: CGFloat(cities.count) * vFWidth, height: vFHeight)
-        
-        for i in 0..<cities.count {
-            let city = cities[i]
-            
-            let forecastView = CityWeatherForecastView.create()
-            forecastView.setCity(city)
-            
-            forecastView.frame = CGRect(x: vFWidth * CGFloat(i), y: 0, width: vFWidth, height: vFHeight)
-            pagesScrollView.addSubview(forecastView)
-            
-            forecastViews.append(forecastView)
+        if cities.isEmpty {
+            return
         }
         
-        // setup page control
-        pageControl.numberOfPages = cities.count
-        pageControl.currentPage = 0
+        for city in cities {
+            doAddCity(city)
+        }
         
         // request weather for current city
         presenter.currentCityChanged()
     }
     
+    func addCity(_ city: String) {
+        let wasEmptyCities = isEmptyCities()
+        
+        doAddCity(city)
+        
+        if wasEmptyCities {
+            presenter.currentCityChanged()
+        }
+    }
+    
     func getCurrentCityIndex() -> Int {
-        return pageControl.currentPage
+        return isEmptyCities() ? -1 : pageControl.currentPage
     }
     
     func setWeatherForecast(_ weatherForecast: CityWeatherForecast, for cityIndex: Int) {
@@ -85,27 +80,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
     
     func getEnteredCityToAdd() -> String? {
         return addCityAlert?.enteredCity()
-    }
-    
-    func addCity(_ city: String) {
-        let vFWidth: CGFloat = view.frame.width
-        let vFHeight: CGFloat = view.frame.height
-        
-        // setup page scroll
-        let oldPagedScrollViewContentWidth = pagesScrollView.contentSize.width
-        
-        pagesScrollView.contentSize = CGSize(width: oldPagedScrollViewContentWidth + vFWidth, height: vFHeight)
-        
-        let forecastView = CityWeatherForecastView.create()
-        forecastView.setCity(city)
-        
-        forecastView.frame = CGRect(x: oldPagedScrollViewContentWidth, y: 0, width: vFWidth, height: vFHeight)
-        pagesScrollView.addSubview(forecastView)
-        
-        forecastViews.append(forecastView)
-        
-        // setup page control
-        pageControl.numberOfPages += 1
     }
     
     // MARK: UIScrollViewDelegate methods
@@ -133,12 +107,53 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
         present(self.addCityAlert!, animated: false, completion: nil)
     }
     
-//    ------------
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    // MARK: private methods
+    
+    private func cleanCities() {
+        let vFWidth: CGFloat = view.frame.width
+        let vFHeight: CGFloat = view.frame.height
+        
+        // setup page scroll
+        pagesScrollView.frame = CGRect(x: 0, y: 0, width: vFWidth, height: vFHeight)
+        pagesScrollView.contentSize = CGSize(width: 0, height: vFHeight)
+        
+        // setup page control
+        pageControl.numberOfPages = 1
+        pageControl.currentPage = 0
+        
+        // clean views
+        forecastViews.removeAll()
     }
-
-
+    
+    private func doAddCity(_ city: String) {
+        let wasEmptyCities = isEmptyCities()
+        
+        let vFWidth: CGFloat = view.frame.width
+        let vFHeight: CGFloat = view.frame.height
+        
+        // setup page scroll
+        let oldPagedScrollViewContentWidth = pagesScrollView.contentSize.width
+        
+        pagesScrollView.contentSize = CGSize(width: oldPagedScrollViewContentWidth + vFWidth, height: vFHeight)
+        
+        let forecastView = CityWeatherForecastView.create()
+        forecastView.setCity(city)
+        
+        forecastView.frame = CGRect(x: oldPagedScrollViewContentWidth, y: 0, width: vFWidth, height: vFHeight)
+        pagesScrollView.addSubview(forecastView)
+        
+        forecastViews.append(forecastView)
+        
+        // setup page control
+        if wasEmptyCities {
+            pageControl.numberOfPages = 1
+        } else {
+            pageControl.numberOfPages += 1
+        }
+    }
+    
+    private func isEmptyCities() -> Bool {
+        return forecastViews.isEmpty
+    }
 }
 

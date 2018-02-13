@@ -33,9 +33,11 @@ class YahooWeatherAPIClient {
     
     private func createWeatherForecastParameters(for city: String) -> [String: String] {
         let parameters: [String: String] = [
-            "q": "select item.forecast from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text=\"\(city), ru\") and u='c'",
+            "q": "select item.forecast from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text=\"\(city), ru\" limit 1) and u='c'",
             "format": "json"
         ]
+        
+        print(">>> q: \(parameters["q"]!)")
         
         return parameters
     }

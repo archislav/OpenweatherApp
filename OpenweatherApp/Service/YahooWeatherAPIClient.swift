@@ -8,9 +8,10 @@
 
 import Foundation
 import os.log
+import Alamofire
 
 class YahooWeatherAPIClient {
-
+    
     static let YAHOO_WEATHER_API_URL = "https://query.yahooapis.com/v1/public/yql"
     
     static let shared = YahooWeatherAPIClient()
@@ -24,11 +25,32 @@ class YahooWeatherAPIClient {
     }
     
     private func doRequestWeatherForecast(_ parameters: [String: String], _ completionHandler: @escaping (CityWeatherForecast) -> ()) {
-        HTTPUtils.executePOSTRequest(url: YahooWeatherAPIClient.YAHOO_WEATHER_API_URL, with: parameters, completionHandler: { data, response, error in
-            if let weatherForecast = self.handleWeatherForecastResponse(data, response, error) {
-                completionHandler(weatherForecast)
-            }
-         })
+        Alamofire.request(YahooWeatherAPIClient.YAHOO_WEATHER_API_URL,
+                          method: .post,
+                          parameters: parameters)
+            .validate()
+            .responseJSON() { response in
+                switch response.result {
+                case .failure(let error):
+                    os_log("Got error on request: %@", type: .error, error.localizedDescription)
+                    return
+                case .success:
+                    break
+                }
+
+                guard let json = response.result.value as? [String: Any] else {
+                    os_log("Got empty response data", type: .error)
+                    return
+                }
+                
+                os_log("Response body: %@", json)
+                
+                let jsonParser = CityWeatherForecastJSONParser()
+                
+                if let forecast = jsonParser.parse(json: json) {
+                    completionHandler(forecast)
+                }
+        }
     }
     
     private func createWeatherForecastParameters(for city: String) -> [String: String] {
@@ -37,40 +59,6 @@ class YahooWeatherAPIClient {
             "format": "json"
         ]
         
-        print(">>> q: \(parameters["q"]!)")
-        
         return parameters
-    }
-    
-    private func handleWeatherForecastResponse(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> CityWeatherForecast? {
-        guard error == nil else {
-            os_log("Got error on request: %@", type: .error, error.debugDescription)
-            return nil
-        }
-        
-        if let httpResponse = response as? HTTPURLResponse {
-            let statusCode = httpResponse.statusCode
-            guard statusCode == HTTPUtils.STATUS_CODE_OK else {
-                os_log("Got response status code: %d", type: .error, statusCode)
-                return nil
-            }
-        }
-        
-        guard let data = data else {
-            os_log("Got empty data on request", type: .error)
-            return nil
-        }
-        
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String: Any]
-            os_log("Response body: %@", json)
-            
-            let jsonParser = CityWeatherForecastJSONParser()
-            
-            return jsonParser.parse(json: json)
-        } catch {
-            os_log("Error on response parsing: %@", type: .error, error.localizedDescription)
-            return nil
-        }
     }
 }

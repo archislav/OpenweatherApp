@@ -4,4 +4,5 @@ use_frameworks!
 
 target 'OpenweatherApp' do
 pod 'Alamofire', '~> 4.5'
+pod 'ObjectMapper', '~> 3.1'
 end

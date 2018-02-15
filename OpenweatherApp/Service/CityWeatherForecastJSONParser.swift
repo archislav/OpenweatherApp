@@ -10,37 +10,22 @@ import Foundation
 
 class CityWeatherForecastJSONParser {
     
-    func parse(json: [String: Any]) -> CityWeatherForecast? {
-        let container = JSONUtils.getJSONArrayFromJson(json, ["query", "results"], "channel")
-        
-        let forecastPath = ["item", "forecast"]
-        
-        let dateFormatter = createDateFormatter()
-        
-        var conditionsList = [DateWeatherCondition]()
-        
-        for forecastBlock in container {
-            let dateStr = JSONUtils.getStringFromJson(forecastBlock, forecastPath, "date")
-            let minTemp = JSONUtils.getIntFromJson(forecastBlock, forecastPath, "low")
-            let maxTemp = JSONUtils.getIntFromJson(forecastBlock, forecastPath, "high")
+    func parse(json: String) -> CityWeatherForecast? {
+        let response = YWForecastResponse(JSONString: json)
+        if let response = response, let dateForecasts = response.query.results.forecasts {
+            var forecast = CityWeatherForecast()
             
-            let conditions = DateWeatherCondition(dateFormatter.date(from: dateStr)!, minTemp, maxTemp)
-            conditionsList.append(conditions)
+            for dateForecast in dateForecasts {
+                let conditions = DateWeatherCondition(
+                    dateForecast.date,
+                    Int(dateForecast.minTempStr)!,
+                    Int(dateForecast.maxTempStr)!)
+                forecast.dateWeatherConditions.append(conditions)
+            }
+            
+            return forecast
+        } else {
+            return nil
         }
-        
-        var forecast = CityWeatherForecast()
-        forecast.dateWeatherConditions = conditionsList
-        
-        return forecast
-    }
-    
-    private func createDateFormatter() -> DateFormatter {
-        // вид даты 09 Feb 2018
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        
-        return dateFormatter
     }
 }

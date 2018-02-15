@@ -29,7 +29,7 @@ class YahooWeatherAPIClient {
                           method: .post,
                           parameters: parameters)
             .validate()
-            .responseJSON() { response in
+            .responseString() { response in
                 switch response.result {
                 case .failure(let error):
                     os_log("Got error on request: %@", type: .error, error.localizedDescription)
@@ -37,8 +37,8 @@ class YahooWeatherAPIClient {
                 case .success:
                     break
                 }
-
-                guard let json = response.result.value as? [String: Any] else {
+                
+                guard let json = response.result.value else {
                     os_log("Got empty response data", type: .error)
                     return
                 }
@@ -58,6 +58,8 @@ class YahooWeatherAPIClient {
             "q": "select item.forecast from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text=\"\(city), ru\" limit 1) and u='c'",
             "format": "json"
         ]
+        
+        print(">>> q: \(parameters["q"]!)")
         
         return parameters
     }

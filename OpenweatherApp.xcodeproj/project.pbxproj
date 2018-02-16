@@ -34,6 +34,8 @@
 		A5F306CF203615D400444B48 /* YWForecastResponseQueryResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F306CE203615D400444B48 /* YWForecastResponseQueryResults.swift */; };
 		A5F306D12036173000444B48 /* YWForecastResponseQueryResultsForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F306D02036173000444B48 /* YWForecastResponseQueryResultsForecast.swift */; };
 		A5F306D52036268100444B48 /* YWDateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F306D42036268100444B48 /* YWDateTransform.swift */; };
+		A5F306D720362D9F00444B48 /* NewCityWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F306D620362D9F00444B48 /* NewCityWeatherForecastViewController.swift */; };
+		A5F306D92036370A00444B48 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F306D82036370A00444B48 /* MainPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		A5F306CE203615D400444B48 /* YWForecastResponseQueryResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YWForecastResponseQueryResults.swift; sourceTree = "<group>"; };
 		A5F306D02036173000444B48 /* YWForecastResponseQueryResultsForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YWForecastResponseQueryResultsForecast.swift; sourceTree = "<group>"; };
 		A5F306D42036268100444B48 /* YWDateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YWDateTransform.swift; sourceTree = "<group>"; };
+		A5F306D620362D9F00444B48 /* NewCityWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCityWeatherForecastViewController.swift; sourceTree = "<group>"; };
+		A5F306D82036370A00444B48 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,8 @@
 				A5CB4E2D202CA1C800BB9E69 /* CityWeatherForecastView.xib */,
 				A5CB4E2F202CA23100BB9E69 /* CityWeatherForecastView.swift */,
 				A5CB4E39202CFE7F00BB9E69 /* AddCityAlertViewController.swift */,
+				A5F306D620362D9F00444B48 /* NewCityWeatherForecastViewController.swift */,
+				A5F306D82036370A00444B48 /* MainPageViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				A5CB4E4A202D1BD000BB9E69 /* UrlEncoder.swift in Sources */,
 				A5CB4E3A202CFE7F00BB9E69 /* AddCityAlertViewController.swift in Sources */,
 				A5CB4E36202CAF3700BB9E69 /* CityRepository.swift in Sources */,
+				A5F306D92036370A00444B48 /* MainPageViewController.swift in Sources */,
 				A5CB4E38202CB75600BB9E69 /* WeatherService.swift in Sources */,
 				A5F306D52036268100444B48 /* YWDateTransform.swift in Sources */,
 				A5CB4E49202D1BD000BB9E69 /* JSONUtils.swift in Sources */,
@@ -389,6 +396,7 @@
 				A5F306CF203615D400444B48 /* YWForecastResponseQueryResults.swift in Sources */,
 				A5CB4E33202CA6B700BB9E69 /* CityWeatherForecast.swift in Sources */,
 				A5CB4E2A202C9FBF00BB9E69 /* MainPresenterProtocol.swift in Sources */,
+				A5F306D720362D9F00444B48 /* NewCityWeatherForecastViewController.swift in Sources */,
 				A5CB4E09202C9DD400BB9E69 /* MainViewController.swift in Sources */,
 				A5CB4E07202C9DD400BB9E69 /* AppDelegate.swift in Sources */,
 				A5CB4E43202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift in Sources */,

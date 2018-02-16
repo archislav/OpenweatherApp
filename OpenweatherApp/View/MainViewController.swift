@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
     var addCityAlert: AddCityAlertViewController?
     
     var presenter: MainPresenterProtocol!
-    var forecastViews = [CityWeatherForecastView]()
+    var forecastViews = [NewCityWeatherForecastViewController]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,11 +136,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate, MainViewProtoc
         
         pagesScrollView.contentSize = CGSize(width: oldPagedScrollViewContentWidth + vFWidth, height: vFHeight)
         
-        let forecastView = CityWeatherForecastView.create()
+        let forecastView = NewCityWeatherForecastViewController.create()
         forecastView.setCity(city)
         
-        forecastView.frame = CGRect(x: oldPagedScrollViewContentWidth, y: 0, width: vFWidth, height: vFHeight)
-        pagesScrollView.addSubview(forecastView)
+        forecastView.view.frame = CGRect(x: oldPagedScrollViewContentWidth, y: 0, width: vFWidth, height: vFHeight)
+        pagesScrollView.addSubview(forecastView.view)
         
         forecastViews.append(forecastView)
         

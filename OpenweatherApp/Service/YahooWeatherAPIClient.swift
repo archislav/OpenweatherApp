@@ -21,10 +21,10 @@ class YahooWeatherAPIClient {
     func requestWeatherForecast(for city: String, successCallback: @escaping (CityWeatherForecast) -> ())   {
         let parameters = createWeatherForecastParameters(for: city)
         
-        doRequestWeatherForecast(parameters, successCallback)
+        doRequestWeatherForecast(city, parameters, successCallback)
     }
     
-    private func doRequestWeatherForecast(_ parameters: [String: String], _ completionHandler: @escaping (CityWeatherForecast) -> ()) {
+    private func doRequestWeatherForecast(_ city: String, _ parameters: [String: String], _ completionHandler: @escaping (CityWeatherForecast) -> ()) {
         Alamofire.request(YahooWeatherAPIClient.YAHOO_WEATHER_API_URL,
                           method: .post,
                           parameters: parameters)
@@ -47,7 +47,8 @@ class YahooWeatherAPIClient {
                 
                 let jsonParser = CityWeatherForecastJSONParser()
                 
-                if let forecast = jsonParser.parse(json: json) {
+                if var forecast = jsonParser.parse(json: json) {
+                    forecast.city = city
                     completionHandler(forecast)
                 }
         }

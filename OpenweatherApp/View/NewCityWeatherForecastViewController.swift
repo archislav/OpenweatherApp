@@ -38,7 +38,7 @@ class NewCityWeatherForecastViewController: UIViewController, UITableViewDelegat
     func setWeatherForecast(_ weatherForecast: CityWeatherForecast) {
         DispatchQueue.main.async {
             self.forecast = weatherForecast
-            
+            self.setCity(weatherForecast.city)
             self.forecastTableView.reloadData()
         }
         

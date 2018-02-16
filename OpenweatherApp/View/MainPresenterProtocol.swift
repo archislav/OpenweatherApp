@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MainPresenterProtocol: AnyObject {
+protocol MainPresenterProtocol: class {
     
     init(mainView: MainViewProtocol)
     

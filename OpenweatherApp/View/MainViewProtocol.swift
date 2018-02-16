@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MainViewProtocol: AnyObject {
+protocol MainViewProtocol: class {
     
     func setCities(cities: [String])
     

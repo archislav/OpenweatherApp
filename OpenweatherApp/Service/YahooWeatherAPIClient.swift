@@ -18,7 +18,7 @@ class YahooWeatherAPIClient {
     
     private init() {}
     
-    func requestWeatherForecast(for city: String, successCallback: @escaping ([DateWeatherCondition]) -> ())   {
+    func requestWeatherForecast(for city: City, successCallback: @escaping ([DateWeatherCondition]) -> ())   {
         let parameters = createWeatherForecastParameters(for: city)
         
         doRequestWeatherForecast(parameters, successCallback)
@@ -53,9 +53,9 @@ class YahooWeatherAPIClient {
         }
     }
     
-    private func createWeatherForecastParameters(for city: String) -> [String: String] {
+    private func createWeatherForecastParameters(for city: City) -> [String: String] {
         let parameters: [String: String] = [
-            "q": "select item.forecast from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text=\"\(city), ru\" limit 1) and u='c'",
+            "q": "select item.forecast from weather.forecast where woeid in (SELECT woeid FROM geo.places WHERE text=\"\(city.name), ru\" limit 1) and u='c'",
             "format": "json"
         ]
         

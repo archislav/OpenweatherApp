@@ -37,7 +37,11 @@ class AddCityAlertViewController: UIAlertController {
         super.viewDidLoad()
     }
     
-    func enteredCity() -> String? {
-        return self.textFields?.first?.text
+    func enteredCity() -> City? {
+        guard let cityName = self.textFields?.first?.text else {
+            return nil
+        }
+        
+        return City(name: cityName)
     }
 }

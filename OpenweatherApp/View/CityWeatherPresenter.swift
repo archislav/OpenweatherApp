@@ -17,7 +17,7 @@ class CityWeatherPresenter: CityWeatherPresenterProtocol {
     
     var weatherService = WeatherService.shared
     
-    var city: String?
+    var city: City?
     
     required init(view: CityWeatherViewProtocol) {
         self.view = view
@@ -29,7 +29,7 @@ class CityWeatherPresenter: CityWeatherPresenterProtocol {
         self.mainPresenter = mainPresenter
     }
     
-    func setCity(_ city: String) {
+    func setCity(_ city: City) {
         self.city = city
     }
     

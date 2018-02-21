@@ -12,7 +12,7 @@ protocol CityWeatherPresenterProtocol {
     
     init(view: CityWeatherViewProtocol)
     
-    func setCity(_ city: String)
+    func setCity(_ city: City)
     
     func initialize()
     

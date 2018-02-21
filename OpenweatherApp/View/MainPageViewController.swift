@@ -40,7 +40,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     
     // MARK: MainViewProtocol methods
     
-    func setCities(cities: [String]) {
+    func setCities(cities: [City]) {
         cleanForecastViewControllers()
         
         for city in cities {
@@ -50,7 +50,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         reloadPageDatasource()
     }
     
-    func addCity(_ city: String) {
+    func addCity(_ city: City) {
         addForecastViewController(city)
         
         reloadPageDatasource()
@@ -65,7 +65,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         self.present(self.addCityDialog!, animated: true, completion: nil)
     }
     
-    func getCityToAdd() -> String? {
+    func getCityToAdd() -> City? {
         return addCityDialog?.enteredCity()
     }
     
@@ -115,7 +115,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         forecastViewControllers.removeAll()
     }
     
-    private func addForecastViewController(_ city: String) {
+    private func addForecastViewController(_ city: City) {
         let forecastView = NewCityWeatherForecastViewController.create(for: city, mainPresenter: presenter)
         
         forecastViewControllers.append(forecastView)

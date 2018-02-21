@@ -18,6 +18,7 @@
 		A52EE9D5203D7CA7002AFBD6 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE9CC203D7CA7002AFBD6 /* MainPageViewController.swift */; };
 		A52EE9D6203D7CA7002AFBD6 /* MainPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE9CD203D7CA7002AFBD6 /* MainPresenterProtocol.swift */; };
 		A52EE9D7203D7CA7002AFBD6 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE9CE203D7CA7002AFBD6 /* MainViewProtocol.swift */; };
+		A52EE9D9203D9BD8002AFBD6 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE9D8203D9BD8002AFBD6 /* City.swift */; };
 		A5CB4E07202C9DD400BB9E69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB4E06202C9DD400BB9E69 /* AppDelegate.swift */; };
 		A5CB4E0C202C9DD400BB9E69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CB4E0A202C9DD400BB9E69 /* Main.storyboard */; };
 		A5CB4E0E202C9DD400BB9E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CB4E0D202C9DD400BB9E69 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		A52EE9CC203D7CA7002AFBD6 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		A52EE9CD203D7CA7002AFBD6 /* MainPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPresenterProtocol.swift; sourceTree = "<group>"; };
 		A52EE9CE203D7CA7002AFBD6 /* MainViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
+		A52EE9D8203D9BD8002AFBD6 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		A5CB4E03202C9DD300BB9E69 /* OpenweatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenweatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CB4E06202C9DD400BB9E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CB4E0B202C9DD400BB9E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				A5CB4E32202CA6B700BB9E69 /* CityWeatherForecast.swift */,
 				A5CB4E44202D159000BB9E69 /* DateWeatherCondition.swift */,
+				A52EE9D8203D9BD8002AFBD6 /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				A52EE9D0203D7CA7002AFBD6 /* NewCityWeatherForecastViewController.swift in Sources */,
 				A5CB4E07202C9DD400BB9E69 /* AppDelegate.swift in Sources */,
 				A5CB4E43202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift in Sources */,
+				A52EE9D9203D9BD8002AFBD6 /* City.swift in Sources */,
 				A5178A3D2033109D00F0781E /* YWForecastResponseParser.swift in Sources */,
 				A5F306CB2036147200444B48 /* YWForecastResponse.swift in Sources */,
 				A5CB4E45202D159000BB9E69 /* DateWeatherCondition.swift in Sources */,

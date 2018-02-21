@@ -17,15 +17,15 @@ class WeatherService {
     
     private init() {}
     
-    func getAllCities() -> [String] {
+    func getAllCities() -> [City] {
         return cityRepository.getAllCities()
     }
     
-    func addCity(_ city: String) -> Bool {
+    func addCity(_ city: City) -> Bool {
         return cityRepository.addCity(city)
     }
     
-    func requestWeatherForecast(for city: String, completionHandler: @escaping (CityWeatherForecast) -> ()){
+    func requestWeatherForecast(for city: City, completionHandler: @escaping (CityWeatherForecast) -> ()) {
         weatherAPIClient.requestWeatherForecast(for: city) { (conditions) in
             let forecast = CityWeatherForecast(city: city, conditions: conditions)
             completionHandler(forecast)

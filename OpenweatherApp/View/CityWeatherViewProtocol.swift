@@ -10,7 +10,7 @@ import Foundation
 
 protocol CityWeatherViewProtocol: class {
     
-    func setCity(_ city: String)
+    func setCity(_ city: City)
     
     func setWeatherForecast(_ weatherForecast: CityWeatherForecast) 
 }

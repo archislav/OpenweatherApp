@@ -24,7 +24,7 @@ class NewCityWeatherForecastViewController: UIViewController, CityWeatherViewPro
     // MARK: data
     var forecast : CityWeatherForecast?
     
-    static func create(for city: String, mainPresenter: MainPresenterProtocol) -> NewCityWeatherForecastViewController {
+    static func create(for city: City, mainPresenter: MainPresenterProtocol) -> NewCityWeatherForecastViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewCityWeatherForecastViewController") as! NewCityWeatherForecastViewController
         
         viewController.presenter = CityWeatherPresenter(view: viewController, mainPresenter: mainPresenter)
@@ -43,8 +43,8 @@ class NewCityWeatherForecastViewController: UIViewController, CityWeatherViewPro
     }
     
     // MARK:CityWeatherViewProtocol methods
-    func setCity(_ city: String) {
-        cityLabel.text = city
+    func setCity(_ city: City) {
+        cityLabel.text = city.name
     }
     
     func setWeatherForecast(_ weatherForecast: CityWeatherForecast) {

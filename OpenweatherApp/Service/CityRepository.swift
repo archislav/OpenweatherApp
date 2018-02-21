@@ -16,7 +16,7 @@ class CityRepository {
     static var shared = CityRepository()
     
     private init(){
-        if let cities = UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as? [String] {
+        if let cityNames = UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as? [String] {
             os_log("Cities already initialized")
         } else {
             let cities = ["Moscow", "Kazan", "Samara"]
@@ -25,16 +25,18 @@ class CityRepository {
         }
     }
     
-    func getAllCities() -> [String] {
-        return UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as! [String]
+    func getAllCities() -> [City] {
+        let cityNames = UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as! [String]
+        return cityNames.map() {(cityName) in City(name: cityName)}
     }
     
-    func addCity(_ city: String) -> Bool {
+    func addCity(_ city: City) -> Bool {
         var cities = getAllCities()
         if !cities.contains(city) {
             cities.append(city)
-            UserDefaults.standard.set(cities, forKey: CityRepository.UD_CITIES_KEY)
-            os_log("Added city: %@", city)
+            let cityNames = cities.map() {(city) in city.name}
+            UserDefaults.standard.set(cityNames, forKey: CityRepository.UD_CITIES_KEY)
+            os_log("Added city: %@", city.name)
             return true
         } else {
             return false

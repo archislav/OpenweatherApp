@@ -10,13 +10,13 @@ import Foundation
 
 protocol MainViewProtocol: class {
     
-    func setCities(cities: [String])
+    func setCities(cities: [City])
     
     func getCurrentCityIndex() -> Int
     
     func showAddCityDialog()
     
-    func getCityToAdd() -> String?
+    func getCityToAdd() -> City?
     
-    func addCity(_ city: String)
+    func addCity(_ city: City)
 }

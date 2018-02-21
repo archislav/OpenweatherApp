@@ -14,7 +14,7 @@ class MainPresenter: MainPresenterProtocol {
     
     let weatherService = WeatherService.shared
     
-    var cities: [String]!
+    var cities: [City]!
     
     // MARK: MainPresenterProtocol methods
     

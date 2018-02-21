@@ -9,6 +9,7 @@
 import Foundation
 import os.log
 
+// TODO: remove
 class HTTPUtils {
     
     static let STATUS_CODE_OK = 200

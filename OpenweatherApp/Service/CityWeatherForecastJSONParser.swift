@@ -12,7 +12,7 @@ class CityWeatherForecastJSONParser {
     
     func parse(json: String) -> CityWeatherForecast? {
         let response = YWForecastResponse(JSONString: json)
-        if let response = response, let dateForecasts = response.query.results.forecasts {
+        if let response = response, let dateForecasts = response.query?.results?.forecasts {
             var forecast = CityWeatherForecast()
             
             for dateForecast in dateForecasts {

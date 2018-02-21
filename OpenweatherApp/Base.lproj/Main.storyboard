@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,42 +33,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVW-d2-2RZ">
-                                <rect key="frame" x="10" y="40" width="355" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVW-d2-2RZ">
+                                <rect key="frame" x="10" y="40" width="294" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bzt-yt-oq4">
-                                <rect key="frame" x="10" y="60" width="355" height="527"/>
+                                <rect key="frame" x="10" y="98.5" width="355" height="488.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNk-Qp-8HL">
-                                <rect key="frame" x="313" y="617" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNk-Qp-8HL">
+                                <rect key="frame" x="314" y="34" width="51" height="51"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="51" id="D3n-lD-j1I"/>
+                                    <constraint firstAttribute="height" constant="51" id="Rej-UV-s2X"/>
+                                    <constraint firstAttribute="width" secondItem="bNk-Qp-8HL" secondAttribute="height" multiplier="1:1" id="tjy-aP-Nxe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addCityButtonTapped:" destination="50I-9g-1Gn" eventType="touchUpInside" id="HfS-7d-mXp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jVW-d2-2RZ" firstAttribute="top" secondItem="o0t-w0-5cU" secondAttribute="top" constant="20" id="1sC-g6-FdW"/>
+                            <constraint firstItem="jVW-d2-2RZ" firstAttribute="leading" secondItem="o0t-w0-5cU" secondAttribute="leading" constant="10" id="A2e-9h-9df"/>
+                            <constraint firstItem="bNk-Qp-8HL" firstAttribute="centerY" secondItem="jVW-d2-2RZ" secondAttribute="centerY" id="K4g-4u-cMF"/>
+                            <constraint firstItem="bNk-Qp-8HL" firstAttribute="leading" secondItem="jVW-d2-2RZ" secondAttribute="trailing" constant="10" id="K8A-vQ-rbw"/>
+                            <constraint firstItem="o0t-w0-5cU" firstAttribute="trailing" secondItem="bNk-Qp-8HL" secondAttribute="trailing" constant="10" id="LQU-oH-2sd"/>
+                            <constraint firstItem="jVW-d2-2RZ" firstAttribute="top" secondItem="o0t-w0-5cU" secondAttribute="top" constant="20" id="LqM-FI-rZA"/>
                             <constraint firstItem="bzt-yt-oq4" firstAttribute="top" secondItem="jVW-d2-2RZ" secondAttribute="bottom" constant="20" id="VHK-e2-U2k"/>
-                            <constraint firstItem="jVW-d2-2RZ" firstAttribute="leading" secondItem="o0t-w0-5cU" secondAttribute="leading" constant="10" id="ZcK-2x-Fc4"/>
                             <constraint firstItem="o0t-w0-5cU" firstAttribute="bottom" secondItem="bzt-yt-oq4" secondAttribute="bottom" constant="80" id="bxb-hb-cq6"/>
                             <constraint firstItem="o0t-w0-5cU" firstAttribute="trailing" secondItem="bzt-yt-oq4" secondAttribute="trailing" constant="10" id="mAA-VN-PE9"/>
-                            <constraint firstItem="o0t-w0-5cU" firstAttribute="trailing" secondItem="jVW-d2-2RZ" secondAttribute="trailing" constant="10" id="uYD-3T-uBn"/>
                             <constraint firstItem="bzt-yt-oq4" firstAttribute="leading" secondItem="o0t-w0-5cU" secondAttribute="leading" constant="10" id="zPc-ej-HjN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o0t-w0-5cU"/>
                     </view>
                     <connections>
+                        <outlet property="addCityButton" destination="bNk-Qp-8HL" id="vMl-aJ-KVu"/>
                         <outlet property="cityLabel" destination="jVW-d2-2RZ" id="3NY-sl-Tbp"/>
                         <outlet property="forecastTableView" destination="bzt-yt-oq4" id="4wN-XP-aMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rl8-8F-Pg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="34"/>
+            <point key="canvasLocation" x="1372" y="33.733133433283363"/>
         </scene>
     </scenes>
 </document>

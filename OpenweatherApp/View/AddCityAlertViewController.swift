@@ -40,8 +40,4 @@ class AddCityAlertViewController: UIAlertController {
     func enteredCity() -> String? {
         return self.textFields?.first?.text
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }

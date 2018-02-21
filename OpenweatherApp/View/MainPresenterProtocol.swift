@@ -14,7 +14,8 @@ protocol MainPresenterProtocol: class {
     
     func initialize()
     
-    func currentCityChanged()
+    func askUserToAddCity()
     
     func enteredCityToAdd()
+    
 }

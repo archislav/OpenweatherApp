@@ -14,9 +14,9 @@ protocol MainViewProtocol: class {
     
     func getCurrentCityIndex() -> Int
     
-    func setWeatherForecast(_ weatherForecast: CityWeatherForecast, for cityIndex: Int)
+    func showAddCityDialog()
     
-    func getEnteredCityToAdd() -> String?
+    func getCityToAdd() -> String?
     
     func addCity(_ city: String)
 }

@@ -27,22 +27,12 @@ class MainPresenter: MainPresenterProtocol {
         mainView.setCities(cities: self.cities)
     }
     
-    func currentCityChanged() {
-        let cityIndex = mainView.getCurrentCityIndex()
-        
-        if cityIndex == -1 {
-            return
-        }
-        
-        let city = cities[cityIndex]
-        
-        weatherService.requestWeatherForecast(for: city) { (weatherForecast) in
-            self.mainView.setWeatherForecast(weatherForecast, for: cityIndex)
-        }
+    func askUserToAddCity() {
+        mainView.showAddCityDialog()
     }
     
     func enteredCityToAdd() {
-        if let cityToAdd = mainView.getEnteredCityToAdd() {
+        if let cityToAdd = mainView.getCityToAdd() {
             let cityWasAdded = weatherService.addCity(cityToAdd)
             if cityWasAdded {
                 cities.append(cityToAdd)

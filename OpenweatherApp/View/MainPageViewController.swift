@@ -11,7 +11,12 @@ import UIKit
 class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, MainViewProtocol {
     
     var presenter: MainPresenterProtocol!
-    var forecastViews = [NewCityWeatherForecastViewController]()
+    
+    var forecastViewControllers = [NewCityWeatherForecastViewController]()
+    
+    
+    var addCityDialog: AddCityAlertViewController?
+    
     var currentIndex = 0
     
     required init?(coder: NSCoder) {
@@ -36,50 +41,39 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     // MARK: MainViewProtocol methods
     
     func setCities(cities: [String]) {
-        cleanCities()
-        
-        if cities.isEmpty {
-            return
-        }
+        cleanForecastViewControllers()
         
         for city in cities {
-            doAddCity(city)
+            addForecastViewController(city)
         }
         
-        setViewControllers([forecastViews[0]], direction: .forward, animated: true, completion: nil)
-        
-        // request weather for current city
-        presenter.currentCityChanged()
+        reloadPageDatasource()
     }
     
     func addCity(_ city: String) {
-        let wasEmptyCities = isEmptyCities()
+        addForecastViewController(city)
         
-        doAddCity(city)
-        
-        if wasEmptyCities {
-            presenter.currentCityChanged()
-        }
+        reloadPageDatasource()
     }
     
     func getCurrentCityIndex() -> Int {
         return currentIndex
     }
     
-    func setWeatherForecast(_ weatherForecast: CityWeatherForecast, for cityIndex: Int) {
-        forecastViews[cityIndex].setWeatherForecast(weatherForecast)
+    func showAddCityDialog() {
+        self.addCityDialog = AddCityAlertViewController.create(with: presenter)
+        self.present(self.addCityDialog!, animated: true, completion: nil)
     }
     
-    func getEnteredCityToAdd() -> String? {
-//        return addCityAlert?.enteredCity()
-        return nil // todo:
+    func getCityToAdd() -> String? {
+        return addCityDialog?.enteredCity()
     }
-
     
     // MARK: UIPageViewControllerDataSource
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return forecastViews.count
+        print(">>> Asked count: \(forecastViewControllers.count)")
+        return forecastViewControllers.count
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
@@ -87,40 +81,72 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let index = forecastViews.index(of: viewController as! NewCityWeatherForecastViewController) ?? 0
+        let index = findIndex(for: viewController)
         
-        return index <= 0 ? nil : forecastViews[index - 1]
+        print(">>> Before: \(index)")
+        
+        if let unwrappedIndex = index {
+            return unwrappedIndex <= 0 ? nil : forecastViewControllers[unwrappedIndex - 1]
+        } else {
+            return nil
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let index = forecastViews.index(of: viewController as! NewCityWeatherForecastViewController) ?? 0
+        let index = findIndex(for: viewController)
         
-        return index >= forecastViews.count - 1 ? nil : forecastViews[index + 1]
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-      
-        presenter.currentCityChanged()
+        print(">>> After: \(index)")
+        
+        if let unwrappedIndex = index {
+            return unwrappedIndex >= forecastViewControllers.count - 1 ? nil : forecastViewControllers[unwrappedIndex + 1]
+        } else {
+            return nil
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        self.currentIndex = forecastViews.index(of: pendingViewControllers[0] as! NewCityWeatherForecastViewController) ?? 0
+        self.currentIndex = findIndex(for: pendingViewControllers[0]) ?? 0
+        print(">>> currentIndex: \(self.currentIndex)")
     }
     
     // MARK: private methods
     
-    private func cleanCities() {
-        // clean views
-        forecastViews.removeAll()
+    private func cleanForecastViewControllers() {
+        forecastViewControllers.removeAll()
     }
     
-    private func doAddCity(_ city: String) {
-        let forecastView = NewCityWeatherForecastViewController.create()
+    private func addForecastViewController(_ city: String) {
+        let forecastView = NewCityWeatherForecastViewController.create(for: city, mainPresenter: presenter)
         
-        forecastViews.append(forecastView)
+        forecastViewControllers.append(forecastView)
     }
     
-    private func isEmptyCities() -> Bool {
-        return forecastViews.isEmpty
+    private func findIndex(for viewController: UIViewController?) -> Int? {
+        guard viewController != nil else {
+            print(">>> viewController is nil!!!!")
+            return nil
+        }
+        
+        if let vc = viewController as? NewCityWeatherForecastViewController {
+            return forecastViewControllers.index(of: vc)
+        } else {
+            print(">>> viewController isn't NewCityWeatherForecastViewController!")
+            return nil
+        }
+    }
+    
+    private func reloadPageDatasource() {
+        // такой комбинацией вызово удается добиться вызова методов
+        // presentationCount for pageViewController и
+        // pageViewController _ , viewControllerAfter
+        // для корреткного показа числа страниц и возможности перехода на добаленную страницу
+        
+        // todo: найти более корректный вариант
+        if forecastViewControllers.count > currentIndex {
+            setViewControllers([forecastViewControllers[currentIndex]], direction: .forward, animated: true, completion: nil)
+        }
+        
+        self.dataSource = nil
+        self.dataSource = self
     }
 }

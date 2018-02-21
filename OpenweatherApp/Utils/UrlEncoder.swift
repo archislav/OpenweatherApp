@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: remove
 class UrlEncoder {
     
 //    https://gist.github.com/svenresch/b4bf443fb325385eec72

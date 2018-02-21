@@ -8,22 +8,22 @@
 
 import Foundation
 
-class CityWeatherForecastJSONParser {
+class YWForecastResponseParser {
     
-    func parse(json: String) -> CityWeatherForecast? {
+    func parse(json: String) -> [DateWeatherCondition]? {
         let response = YWForecastResponse(JSONString: json)
         if let response = response, let dateForecasts = response.query?.results?.forecasts {
-            var forecast = CityWeatherForecast()
             
+            var conditionsList = [DateWeatherCondition] ()
             for dateForecast in dateForecasts {
                 let conditions = DateWeatherCondition(
                     dateForecast.date,
                     Int(dateForecast.minTempStr)!,
                     Int(dateForecast.maxTempStr)!)
-                forecast.dateWeatherConditions.append(conditions)
+                conditionsList.append(conditions)
             }
             
-            return forecast
+            return conditionsList
         } else {
             return nil
         }

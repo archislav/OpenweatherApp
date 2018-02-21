@@ -10,8 +10,11 @@ import Foundation
 
 struct CityWeatherForecast {
     
-    var city: String!
+    var city: String
     var dateWeatherConditions = [DateWeatherCondition]()
     
-    init() {}
+    init(city: String, conditions: [DateWeatherCondition]) {
+        self.city = city
+        self.dateWeatherConditions = conditions
+    }
 }

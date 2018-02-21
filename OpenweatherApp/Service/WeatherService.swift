@@ -26,7 +26,8 @@ class WeatherService {
     }
     
     func requestWeatherForecast(for city: String, completionHandler: @escaping (CityWeatherForecast) -> ()){
-        weatherAPIClient.requestWeatherForecast(for: city) { (forecast) in
+        weatherAPIClient.requestWeatherForecast(for: city) { (conditions) in
+            let forecast = CityWeatherForecast(city: city, conditions: conditions)
             completionHandler(forecast)
         }
     }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9AEFA7D716EAFE7DC3F66090 /* Pods_OpenweatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C85B409ED4F55F342EA8599 /* Pods_OpenweatherApp.framework */; };
-		A5178A3D2033109D00F0781E /* CityWeatherForecastJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5178A3C2033109C00F0781E /* CityWeatherForecastJSONParser.swift */; };
+		A5178A3D2033109D00F0781E /* YWForecastResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5178A3C2033109C00F0781E /* YWForecastResponseParser.swift */; };
 		A52EE9CF203D7CA7002AFBD6 /* AddCityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE9C6203D7CA6002AFBD6 /* AddCityAlertViewController.swift */; };
 		A52EE9D0203D7CA7002AFBD6 /* NewCityWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE9C7203D7CA7002AFBD6 /* NewCityWeatherForecastViewController.swift */; };
 		A52EE9D1203D7CA7002AFBD6 /* CityWeatherPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE9C8203D7CA7002AFBD6 /* CityWeatherPresenterProtocol.swift */; };
@@ -49,7 +49,7 @@
 		4366902010CA94A791192B90 /* Pods-OpenweatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenweatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenweatherApp/Pods-OpenweatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7C85B409ED4F55F342EA8599 /* Pods_OpenweatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenweatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		914E14552C8D8C0B57D56C12 /* Pods-OpenweatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenweatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenweatherApp/Pods-OpenweatherApp.release.xcconfig"; sourceTree = "<group>"; };
-		A5178A3C2033109C00F0781E /* CityWeatherForecastJSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherForecastJSONParser.swift; sourceTree = "<group>"; };
+		A5178A3C2033109C00F0781E /* YWForecastResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YWForecastResponseParser.swift; sourceTree = "<group>"; };
 		A52EE9C6203D7CA6002AFBD6 /* AddCityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCityAlertViewController.swift; sourceTree = "<group>"; };
 		A52EE9C7203D7CA7002AFBD6 /* NewCityWeatherForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCityWeatherForecastViewController.swift; sourceTree = "<group>"; };
 		A52EE9C8203D7CA7002AFBD6 /* CityWeatherPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityWeatherPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 				A5CB4E35202CAF3700BB9E69 /* CityRepository.swift */,
 				A5CB4E37202CB75600BB9E69 /* WeatherService.swift */,
 				A5CB4E42202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift */,
-				A5178A3C2033109C00F0781E /* CityWeatherForecastJSONParser.swift */,
+				A5178A3C2033109C00F0781E /* YWForecastResponseParser.swift */,
 				A5F306CA2036147200444B48 /* YWForecastResponse.swift */,
 				A5F306CC2036150800444B48 /* YWForecastResponseQuery.swift */,
 				A5F306CE203615D400444B48 /* YWForecastResponseQueryResults.swift */,
@@ -381,7 +381,7 @@
 				A52EE9D0203D7CA7002AFBD6 /* NewCityWeatherForecastViewController.swift in Sources */,
 				A5CB4E07202C9DD400BB9E69 /* AppDelegate.swift in Sources */,
 				A5CB4E43202D0EEB00BB9E69 /* YahooWeatherAPIClient.swift in Sources */,
-				A5178A3D2033109D00F0781E /* CityWeatherForecastJSONParser.swift in Sources */,
+				A5178A3D2033109D00F0781E /* YWForecastResponseParser.swift in Sources */,
 				A5F306CB2036147200444B48 /* YWForecastResponse.swift in Sources */,
 				A5CB4E45202D159000BB9E69 /* DateWeatherCondition.swift in Sources */,
 			);

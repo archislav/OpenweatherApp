@@ -40,7 +40,8 @@ class OpenweatherAppTests: XCTestCase {
         print(">>> \(str)")
     }
     
-    func testClient() {
+    
+    /*func testClient() {
         let forecastReceived = expectation(description: "forecast received")
         var receivedForecast: CityWeatherForecast?
         WeatherService.shared.requestWeatherForecast(for: "Kazan") { (forecast) in
@@ -52,6 +53,5 @@ class OpenweatherAppTests: XCTestCase {
         
         XCTAssertNotNil(receivedForecast)
         print(">>> items: \(receivedForecast!.dateWeatherConditions.count)")
-        
-    }
+    }*/
 }

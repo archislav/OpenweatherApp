@@ -72,7 +72,6 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     // MARK: UIPageViewControllerDataSource
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        print(">>> Asked count: \(forecastViewControllers.count)")
         return forecastViewControllers.count
     }
     
@@ -82,8 +81,6 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let index = findIndex(for: viewController)
-        
-        print(">>> Before: \(index)")
         
         if let unwrappedIndex = index {
             return unwrappedIndex <= 0 ? nil : forecastViewControllers[unwrappedIndex - 1]
@@ -95,8 +92,6 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let index = findIndex(for: viewController)
         
-        print(">>> After: \(index)")
-        
         if let unwrappedIndex = index {
             return unwrappedIndex >= forecastViewControllers.count - 1 ? nil : forecastViewControllers[unwrappedIndex + 1]
         } else {
@@ -106,7 +101,6 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         self.currentIndex = findIndex(for: pendingViewControllers[0]) ?? 0
-        print(">>> currentIndex: \(self.currentIndex)")
     }
     
     // MARK: private methods
@@ -123,14 +117,12 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     
     private func findIndex(for viewController: UIViewController?) -> Int? {
         guard viewController != nil else {
-            print(">>> viewController is nil!!!!")
             return nil
         }
         
         if let vc = viewController as? NewCityWeatherForecastViewController {
             return forecastViewControllers.index(of: vc)
         } else {
-            print(">>> viewController isn't NewCityWeatherForecastViewController!")
             return nil
         }
     }

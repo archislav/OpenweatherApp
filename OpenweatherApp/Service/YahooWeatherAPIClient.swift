@@ -59,7 +59,7 @@ class YahooWeatherAPIClient {
             "format": "json"
         ]
         
-        print(">>> q: \(parameters["q"]!)")
+        os_log("query param 'q': %@", parameters["q"]!)
         
         return parameters
     }

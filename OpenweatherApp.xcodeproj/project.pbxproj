@@ -119,13 +119,12 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		A5672EA5203EA14800D6E1D5 /* Utils */ = {
+		A5672EA8203EA3CE00D6E1D5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				A5672EA6203EA16A00D6E1D5 /* DateUtils.swift */,
 			);
-			name = Utils;
-			path = "New Group";
+			path = Util;
 			sourceTree = "<group>";
 		};
 		A5CB4DFA202C9DD300BB9E69 = {
@@ -151,7 +150,7 @@
 		A5CB4E05202C9DD300BB9E69 /* OpenweatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				A5672EA5203EA14800D6E1D5 /* Utils */,
+				A5672EA8203EA3CE00D6E1D5 /* Util */,
 				A5CB4E34202CAED800BB9E69 /* Service */,
 				A5CB4E31202CA6A200BB9E69 /* Model */,
 				A5CB4E26202C9E4700BB9E69 /* View */,

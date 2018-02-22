@@ -74,20 +74,11 @@ class NewCityWeatherForecastViewController: UIViewController, CityWeatherViewPro
         
         let conditions = forecast!.dateWeatherConditions[indexPath.row]
         
-        let formatter = createDayOfWeekNameFormatter()
+        let formatter = DateUtils.createDayOfWeekNameFormatter()
         let dayOfWeek = formatter.string(from: conditions.date)
         
         cell.textLabel?.text = "\(dayOfWeek): \(conditions.minTemp)...\(conditions.maxTemp)"
         
         return cell
-    }
-    
-    private func createDayOfWeekNameFormatter() -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
-        formatter.locale = Locale.current
-        formatter.timeZone = TimeZone.current
-        
-        return formatter
     }
 }

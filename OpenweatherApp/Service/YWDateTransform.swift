@@ -18,7 +18,7 @@ class YWDateTransform: TransformType {
     
     open func transformFromJSON(_ value: Any?) -> Date? {
         if let dateStr = value as? String {
-            let dateFormatter = createDateFormatter()
+            let dateFormatter = DateUtils.createDayMonthNameYearDateFormatter()
             return dateFormatter.date(from: dateStr)
         }
         
@@ -27,19 +27,9 @@ class YWDateTransform: TransformType {
     
     open func transformToJSON(_ value: Date?) -> String? {
         if let date = value {
-            let dateFormatter = createDateFormatter()
+            let dateFormatter = DateUtils.createDayMonthNameYearDateFormatter()
             return dateFormatter.string(from: date)
         }
         return nil
-    }
-    
-    private func createDateFormatter() -> DateFormatter {
-        // вид даты 09 Feb 2018
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        
-        return dateFormatter
     }
 }

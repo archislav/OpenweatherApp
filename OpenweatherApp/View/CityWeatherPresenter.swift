@@ -10,10 +10,10 @@ import Foundation
 
 class CityWeatherPresenter: CityWeatherPresenterProtocol {
     
-    var view: CityWeatherViewProtocol
+    weak var view: CityWeatherViewProtocol!
     
     // todo: придумать как вынести MainPresenter
-    var mainPresenter: MainPresenterProtocol!
+    weak var mainPresenter: MainPresenterProtocol!
     
     var weatherService = WeatherService.shared
     

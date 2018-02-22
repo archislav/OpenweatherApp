@@ -14,7 +14,6 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     
     var forecastViewControllers = [NewCityWeatherForecastViewController]()
     
-    
     var addCityDialog: AddCityAlertViewController?
     
     var currentIndex = 0

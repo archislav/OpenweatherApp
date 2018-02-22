@@ -8,38 +8,96 @@
 
 import Foundation
 import os.log
+import CoreData
 
 class CityRepository {
     
-    static let UD_CITIES_KEY = "cities"
+    static let DEFAULT_CITY_NAMES = ["Moscow", "Kazan", "Samara"]
     
     static var shared = CityRepository()
     
-    private init(){
-        if let cityNames = UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as? [String] {
-            os_log("Cities already initialized")
+    private init() {
+        if  getAllCities().isEmpty {
+            prepareCities()
         } else {
-            let cities = ["Moscow", "Kazan", "Samara"]
-            UserDefaults.standard.set(cities, forKey: CityRepository.UD_CITIES_KEY)
-            os_log("Cities initialized with: %@", cities)
+            os_log("Cities already initialized")
         }
     }
     
     func getAllCities() -> [City] {
-        let cityNames = UserDefaults.standard.value(forKey: CityRepository.UD_CITIES_KEY) as! [String]
-        return cityNames.map() {(cityName) in City(name: cityName)}
+        var foundCities: [City] = []
+        
+        let context =  PersistenceService.viewContext
+        
+        context.performAndWait {
+            let fetchRequest: NSFetchRequest<CityEntity> = CityEntity.fetchRequest()
+            let cityEntites = try! PersistenceService.viewContext.fetch(fetchRequest)
+            foundCities = cityEntites.map() {(cityEntity) in City(name: cityEntity.name!)}
+        }
+        
+        return foundCities
     }
     
     func addCity(_ city: City) -> Bool {
-        var cities = getAllCities()
-        if !cities.contains(city) {
-            cities.append(city)
-            let cityNames = cities.map() {(city) in city.name}
-            UserDefaults.standard.set(cityNames, forKey: CityRepository.UD_CITIES_KEY)
-            os_log("Added city: %@", city.name)
-            return true
-        } else {
-            return false
+        var cityWasAdded = false
+        
+        let context =  PersistenceService.viewContext
+        
+        context.performAndWait {
+            if findCity(by: city.name, context: context) == nil {
+                do{
+                    let cityEntity = CityEntity(context: context)
+                    cityEntity.name = city.name
+                    try context.save()
+                    
+                    cityWasAdded = true
+                    os_log("Added city: %@", city.name)
+                } catch {
+                    os_log("Error while preparing cities: %@", error.localizedDescription)
+                    context.rollback()
+                }
+            }
+        }
+        
+        return cityWasAdded
+    }
+    
+    // MARK: private methods
+    
+    private func findCity(by cityName:  String, context: NSManagedObjectContext) -> City? {
+        var foundCities: [City] = []
+        
+        let context =  PersistenceService.viewContext
+        
+        context.performAndWait {
+            let fetchRequest: NSFetchRequest<CityEntity> = CityEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "name = %@", cityName)
+            let cityEntites = try! PersistenceService.viewContext.fetch(fetchRequest)
+            foundCities = cityEntites.map() {(cityEntity) in City(name: cityEntity.name!)}
+        }
+        
+        return foundCities.isEmpty ? nil : foundCities[0]
+    }
+    
+    private func prepareCities() {
+        let cities = CityRepository.DEFAULT_CITY_NAMES
+        
+        let context =  PersistenceService.viewContext
+        
+        context.performAndWait {
+            do {
+                for cityName in cities {
+                    let cityEntity = CityEntity(context: context)
+                    cityEntity.name = cityName
+                }
+                
+                try context.save()
+                
+                os_log("Cities initialized with: %@", cities)
+            } catch {
+                os_log("Error while preparing cities: %@", error.localizedDescription)
+                context.rollback()
+            }
         }
     }
     

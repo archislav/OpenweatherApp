@@ -11,7 +11,7 @@ import ObjectMapper
 
 struct YWForecastResponseQueryResults: Mappable {
     
-    var forecasts: [YWForecastResponseQueryResultsForecast]!
+    var forecasts: [YWForecastResponseQueryResultsForecast]?
     
     init?(map: Map) {
     }

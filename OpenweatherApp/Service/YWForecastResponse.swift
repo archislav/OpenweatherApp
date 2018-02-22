@@ -11,7 +11,7 @@ import ObjectMapper
 
 struct YWForecastResponse: Mappable {
     
-    var query: YWForecastResponseQuery!
+    var query: YWForecastResponseQuery?
     
     init?(map: Map) {
     }
